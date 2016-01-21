@@ -20,4 +20,7 @@
 @property (nonatomic, strong) NSArray *typeNames;
 /** 当前的类别 */
 @property (nonatomic, assign) NSInteger currentType;
+
+// 设置请求参数（让子类去设置）
+- (void)setupParams:(NSMutableDictionary *)params type:(NSInteger)type;
 @end

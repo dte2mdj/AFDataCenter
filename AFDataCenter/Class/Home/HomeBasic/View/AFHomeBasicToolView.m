@@ -78,26 +78,18 @@ NSString *const AFHomeType = @"AFHomeType";
  */
 - (void)changeButtonStateWithTag:(NSInteger)tag
 {
-    // 需要切换的按钮不是当前按钮
-    if (_currentBtn.tag != tag) {
+    // 1.取出需要切换的按钮
+    UIButton *btn = self.btns[tag];
     
-        // 0.发送通知，说明类型选择发生变化
-        NSString *type = [NSString stringWithFormat:@"%d", tag];
-        [AFDefaultCenter postNotificationName:AFHomeTypeChangedNotification object:self userInfo:@{AFHomeType : type}];
-        
-        // 1.取出需要切换的按钮
-        UIButton *btn = self.btns[tag];
-        
-        // 2.将当前按钮状态设为可用
-        _currentBtn.enabled = YES;
-        
-        // 3.将切换后的按钮设为禁用
-        btn.enabled = NO;
-        
-        // 4.将切换后的按钮保存成当前按钮
-        _currentBtn = btn;
+    // 2.将当前按钮状态设为可用
+    _currentBtn.enabled = YES;
     
-    }
+    // 3.将切换后的按钮设为禁用
+    btn.enabled = NO;
+    
+    // 4.将切换后的按钮保存成当前按钮
+    _currentBtn = btn;
+    
 }
 
 

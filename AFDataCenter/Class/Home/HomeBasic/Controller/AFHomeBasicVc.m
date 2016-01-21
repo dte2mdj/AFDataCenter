@@ -9,23 +9,11 @@
 #import "AFHomeBasicVc.h"
 #import "UIView+SDAutoLayout.h"
 
-@interface AFHomeBasicVc () <AFHomeBasicToolViewDelegate, UIScrollViewDelegate>
-
-@property (nonatomic, strong) UIView *coverView;
+@interface AFHomeBasicVc () <UITableViewDataSource, AFHomeBasicToolViewDelegate, UIScrollViewDelegate>
 @end
 
 @implementation AFHomeBasicVc
 
-- (UIView *)coverView
-{
-    if (!_coverView) {
-        _coverView = [[UIView alloc] init];
-        _coverView.backgroundColor = [UIColor yellowColor];
-        _coverView.frame = _scrollView.frame;
-        [self.view addSubview:_coverView];
-    }
-    return _coverView;
-}
 
 - (NSArray *)typeNames
 {
@@ -54,9 +42,6 @@
     
     // 2、设置scrollView
     [self setupScrollView];
-    
-    // 3、设置数据
-     _toolView.typeNames = self.typeNames;
 }
 
 /**
@@ -99,16 +84,58 @@
     .leftEqualToView(self.view)
     .bottomSpaceToView(self.tabBarController.tabBar, 1);
     
+    for (int i = 0; i < self.typeNames.count; i++) {
+        [self setupTableViewWithIndex:i];
+    }
 }
+
+/**
+ *  设置tableView
+ *
+ *  @param index 索引
+ */
+- (void)setupTableViewWithIndex:(int)index
+{
+    UITableView *tbv = [[UITableView alloc] init];
+    [self.tbvs addObject:tbv];
+    [self.scrollView addSubview:tbv];
+    tbv.sd_layout
+    .widthRatioToView(self.scrollView, 1)
+    .heightRatioToView(self.scrollView, 1)
+    .yIs(0)
+    .xIs(index * SCW);
+    
+    tbv.dataSource = self;
+}
+
+#pragma mark tbv数据源方法
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return arc4random() % 5 + 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *ID = @"HomeCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
+    }
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"测试数据%ld", (long)indexPath.row];
+    
+    return cell;
+}
+
 #pragma mark - AFHomeBasicToolViewDelegate代理方法
 - (void)toolView:(AFHomeBasicToolView *)toolView didSelectButtonFromOldType:(NSInteger)oldType toNewType:(NSInteger)newType
 {
-
     [UIView animateWithDuration:0.3 animations:^{
         _scrollView.contentOffset = CGPointMake(newType * SCW, 0);
-    } completion:^(BOOL finished) {
-        [_coverView removeFromSuperview];
     }];
+    
+    // 发送请求，获得数据
+    [self sendRequestWithType:newType];
 }
 
 #pragma mark - UIScrollView代理方法
@@ -122,12 +149,10 @@
 }
 
 /**
- *  当scroll滚动停止的时候调用
+ *  当拖动scroll滚动停止的时候调用
  */
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    AFLog(@"这里面会不会进来呢");
-    
     // 停止滚动的时候，计算出第几页
     NSInteger type = scrollView.contentOffset.x / SCW;
     
@@ -136,11 +161,25 @@
         // 保存当前的currenTtype
         _currentType = type;
         
-        AFLog(@"更新按钮状态，tableView进行刷新tag:%d    %d", type, _currentType);
-        
         // 更新toolView按钮状态
         [_toolView changeButtonStateWithTag:type];
+        
+        // 发送请求，获得数据
+        [self sendRequestWithType:type];
     }
-
 }
+
+- (void)sendRequestWithType:(NSInteger)type
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"keyk"] = @"hhhh";
+    [self setupParams:params type:type];
+    
+    AFLog(@"%@", params);
+    // 发送请求
+    
+    UITableView *tbv = self.tbvs[type];
+    [tbv reloadData];
+}
+
 @end
