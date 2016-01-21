@@ -13,7 +13,7 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
 #import "AFViewController.h"
-
+#import "UIView+SDAutoLayout.h"
 
 #ifdef DEBUG
 #define AFLog(...) NSLog(__VA_ARGS__)
@@ -23,6 +23,7 @@
 
 #define AFColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 #define AFGlobalBg AFColor(230, 230, 230)
+#define AFCutomerColor_red AFColor(255, 0, 97)
 
 #define AFDefaultCenter [NSNotificationCenter defaultCenter]
 #define LoginSuccess @"LoginSuccess"

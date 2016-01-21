@@ -43,7 +43,7 @@
     [button setTitle:title forState:UIControlStateSelected];
     
     [button setTitleColor:AFColor(73, 73, 73) forState:UIControlStateNormal];
-    [button setTitleColor:AFColor(255, 0, 97) forState:UIControlStateSelected];
+    [button setTitleColor:AFCutomerColor_red forState:UIControlStateSelected];
     [self setupBtn:button];
 }
 

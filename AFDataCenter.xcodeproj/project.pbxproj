@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181BEF8B1C508E910093B1E8 /* AFHomeCoverView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 181BEF8A1C508E910093B1E8 /* AFHomeCoverView.xib */; };
 		18A0ABB11C4F5C3E00DBCEA4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A0ABA61C4F5C3E00DBCEA4 /* AppDelegate.m */; };
 		18CCE6F81C4F5CFA00CCFA86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18CCE6F01C4F5CFA00CCFA86 /* Assets.xcassets */; };
 		18CCE6FC1C4F5CFA00CCFA86 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CCE6F71C4F5CFA00CCFA86 /* main.m */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		181BEF8A1C508E910093B1E8 /* AFHomeCoverView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AFHomeCoverView.xib; sourceTree = "<group>"; };
 		18A0AB801C4F57CD00DBCEA4 /* AFDataCenter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AFDataCenter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A0ABA51C4F5C3E00DBCEA4 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18A0ABA61C4F5C3E00DBCEA4 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -423,6 +425,7 @@
 			children = (
 				18CCE7A61C4FB3D700CCFA86 /* AFHomeBasicToolView.h */,
 				18CCE7A71C4FB3D700CCFA86 /* AFHomeBasicToolView.m */,
+				181BEF8A1C508E910093B1E8 /* AFHomeCoverView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -621,6 +624,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				181BEF8B1C508E910093B1E8 /* AFHomeCoverView.xib in Resources */,
 				18CCE6F81C4F5CFA00CCFA86 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F074FEAF8B9AEF5DC06E144ED2D8840584D47814",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "F074FEAF8B9AEF5DC06E144ED2D8840584D47814" : 0,
+    "9E0A727D00D9E4B4F48A2894FC16EB1DAC7D6BE7" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "B47B79DC-D997-40C2-B1C0-B18A0DC7CC8C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "F074FEAF8B9AEF5DC06E144ED2D8840584D47814" : "AFDataCenter\/",
+    "9E0A727D00D9E4B4F48A2894FC16EB1DAC7D6BE7" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AFDataCenter",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "AFDataCenter.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/dte2mdj\/Test.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9E0A727D00D9E4B4F48A2894FC16EB1DAC7D6BE7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/dte2mdj\/AFDataCenter.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F074FEAF8B9AEF5DC06E144ED2D8840584D47814"
+    }
+  ]
+}
