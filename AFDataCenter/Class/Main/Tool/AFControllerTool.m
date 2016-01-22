@@ -4,11 +4,8 @@
 //
 
 #import "AFControllerTool.h"
-#import "DMTabBarController.h"
 #import "AFNavigationController.h"
 #import "AFLoginController.h"
-
-#define WINDOW [UIApplication sharedApplication].keyWindow
 
 @implementation AFControllerTool
 + (void)initialize
@@ -18,17 +15,11 @@
 
 + (void)chooseRootViewController
 {
-    int a = arc4random() % 2;
-    AFLog(@"%d", a);
-  
-    if (a > 0) {
-        AFLoginController *tmpVc = [[AFLoginController alloc] init];
-        AFNavigationController *loginNav = [[AFNavigationController alloc] initWithRootViewController:tmpVc];
-        WINDOW.rootViewController = loginNav;
-    } else {
-        DMTabBarController *tabBar = [[DMTabBarController alloc] init];
-        WINDOW.rootViewController = tabBar;
-    }
+
+    AFLoginController *tmpVc = [[AFLoginController alloc] init];
+    AFNavigationController *loginNav = [[AFNavigationController alloc] initWithRootViewController:tmpVc];
+    WINDOW.rootViewController = loginNav;
+
     
 //    // 如何知道第一次使用这个版本？比较上次的使用情况
 //    NSString *versionKey = (__bridge NSString *)kCFBundleVersionKey;

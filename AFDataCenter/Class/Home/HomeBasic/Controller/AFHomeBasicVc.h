@@ -8,19 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "AFHomeBasicToolView.h"
+#import "MJRefresh.h"
 
 @interface AFHomeBasicVc : UIViewController
-/** 所有类别的tableView */
-@property (nonatomic, strong) NSMutableArray *tbvs;
-/** 工具view */
-@property (nonatomic, strong) AFHomeBasicToolView *toolView;
-/** 用来放置tableView */
-@property (nonatomic, strong) UIScrollView *scrollView;
 /** 类别的名称 */
 @property (nonatomic, strong) NSArray *typeNames;
-/** 当前的类别 */
-@property (nonatomic, assign) NSInteger currentType;
+/** 工具view */
+@property (nonatomic, strong) AFHomeBasicToolView *toolView;
 
 // 设置请求参数（让子类去设置）
-- (void)setupParams:(NSMutableDictionary *)params type:(NSInteger)type;
+- (void)setupParams:(NSMutableDictionary *)params type:(NSInteger)type tableView:(UITableView *)tbv;
 @end

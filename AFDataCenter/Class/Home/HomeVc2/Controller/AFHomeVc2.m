@@ -22,8 +22,9 @@
     self.toolView.typeNames = self.typeNames;
 }
 
-- (void)setupParams:(NSMutableDictionary *)params type:(NSInteger)type
+- (void)setupParams:(NSMutableDictionary *)params type:(NSInteger)type tableView:(UITableView *)tbv
 {
+    [tbv.mj_header endRefreshing];
     params[@"values"] = @"AAA";
 }
 @end

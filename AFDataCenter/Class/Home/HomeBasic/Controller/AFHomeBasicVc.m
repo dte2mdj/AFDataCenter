@@ -10,6 +10,13 @@
 #import "UIView+SDAutoLayout.h"
 
 @interface AFHomeBasicVc () <UITableViewDataSource, AFHomeBasicToolViewDelegate, UIScrollViewDelegate>
+
+/** 所有类别的tableView */
+@property (nonatomic, strong) NSMutableArray *tbvs;
+/** 用来放置tableView */
+@property (nonatomic, strong) UIScrollView *scrollView;
+/** 当前的类别 */
+@property (nonatomic, assign) NSInteger currentType;
 @end
 
 @implementation AFHomeBasicVc
@@ -69,7 +76,7 @@
  */
 - (void)setupScrollView
 {
-    int tmpCount = self.typeNames.count;
+    NSInteger tmpCount = self.typeNames.count;
     // 创建scrollView
     _scrollView = [[UIScrollView alloc] init];
     _scrollView.delegate = self;
@@ -85,7 +92,7 @@
     .bottomSpaceToView(self.tabBarController.tabBar, 1);
     
     for (int i = 0; i < self.typeNames.count; i++) {
-        [self setupTableViewWithIndex:i];
+        [self setupTableViewWithType:i];
     }
 }
 
@@ -94,7 +101,7 @@
  *
  *  @param index 索引
  */
-- (void)setupTableViewWithIndex:(int)index
+- (void)setupTableViewWithType:(int)type
 {
     UITableView *tbv = [[UITableView alloc] init];
     [self.tbvs addObject:tbv];
@@ -103,9 +110,24 @@
     .widthRatioToView(self.scrollView, 1)
     .heightRatioToView(self.scrollView, 1)
     .yIs(0)
-    .xIs(index * SCW);
+    .xIs(type * SCW);
     
     tbv.dataSource = self;
+    
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+    
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self loadNewDataWithType:type];
+    }];
+    // 设置header
+    tbv.mj_header = header;
+}
+
+- (void)loadNewDataWithType:(NSInteger)type
+{
+    AFLog(@"loadNewData.......");
+    
+    [self sendRequestWithType:type];
 }
 
 #pragma mark tbv数据源方法
@@ -171,15 +193,17 @@
 
 - (void)sendRequestWithType:(NSInteger)type
 {
+    
+    // 保存当前的类别
+    _currentType = type;
+    
+    // 取出当前的tbv
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"keyk"] = @"hhhh";
-    [self setupParams:params type:type];
+
+    [self setupParams:params type:type tableView:self.tbvs[type]];
     
-    AFLog(@"%@", params);
-    // 发送请求
-    
-    UITableView *tbv = self.tbvs[type];
-    [tbv reloadData];
+    AFLog(@"%@, type: %ld", params, (long)type);
 }
 
 @end

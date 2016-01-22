@@ -9,6 +9,7 @@
 #import "AFLoginController.h"
 #import "UIView+SDAutoLayout.h"
 #import "AFTextField.h"
+#import "DMTabBarController.h"
 
 @interface AFLoginController ()
 /** 账号 */
@@ -59,11 +60,26 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    _name.text = [AFAccountTool getAccount];
+    _pass.text = [AFAccountTool getPass];
+}
+
 - (void)login:(UIButton *)btn
 {
-    btn.enabled = NO;
+//    btn.enabled = NO;
     AFLog(@"点击了->禁用");
-    [AFDefaultCenter postNotificationName:LoginSuccess object:nil];
+    if ([_name.text isEqualToString:@"123"] && [_pass.text isEqualToString:@"123"]) {
+        
+        // 保存账户密码
+        [AFAccountTool saveAccount:_name.text pass:_pass.text];
+        
+        DMTabBarController *tabBar = [[DMTabBarController alloc] init];
+        WINDOW.rootViewController = tabBar;
+        
+    }
 }
 
 @end

@@ -14,6 +14,7 @@
 
 #import "AFViewController.h"
 #import "UIView+SDAutoLayout.h"
+#import "AFAccountTool.h"
 
 #ifdef DEBUG
 #define AFLog(...) NSLog(__VA_ARGS__)
@@ -31,6 +32,8 @@
 #define SCB [UIScreen mainScreen].bounds
 #define SCW SCB.size.width
 #define SCH SCB.size.height
+
+#define WINDOW [UIApplication sharedApplication].keyWindow
 
 
 #endif /* AFDataCenter_pch */
