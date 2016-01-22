@@ -8,7 +8,7 @@
 
 #import "AFHomeVc3.h"
 
-@interface AFHomeVc3 ()
+@interface AFHomeVc3 () <AFHomeBasicVcDataSource>
 
 @end
 
@@ -16,13 +16,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"激活";
-    
+    self.navigationItem.title = @"订单";
     self.toolView.typeNames = self.typeNames;
-}
-- (void)setupParams:(NSMutableDictionary *)params type:(NSInteger)type tableView:(UITableView *)tbv
-{
-    params[@"values"] = @"QQQ";
+    
+    // 设置数据源
+    self.dataSource = self;
 }
 
+- (NSInteger)homeTableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+- (UITableViewCell *)homeTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *ID = @"AFHomeVc3Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
+    }
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"测试数据%ld", (long)indexPath.row];
+    
+    return cell;
+}
+
+- (void)loadDataWithType:(NSInteger)type tableView:(UITableView *)tbv
+{
+    
+}
 @end

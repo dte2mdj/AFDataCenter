@@ -133,20 +133,12 @@
 #pragma mark tbv数据源方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return arc4random() % 5 + 1;
+    return [self.dataSource homeTableView:tableView numberOfRowsInSection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *ID = @"HomeCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
-    }
-    
-    cell.textLabel.text = [NSString stringWithFormat:@"测试数据%ld", (long)indexPath.row];
-    
-    return cell;
+    return [self.dataSource homeTableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
 #pragma mark - AFHomeBasicToolViewDelegate代理方法
@@ -193,17 +185,11 @@
 
 - (void)sendRequestWithType:(NSInteger)type
 {
-    
     // 保存当前的类别
     _currentType = type;
-    
-    // 取出当前的tbv
-    
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
 
-    [self setupParams:params type:type tableView:self.tbvs[type]];
-    
-    AFLog(@"%@, type: %ld", params, (long)type);
+    // 请求获取数据
+    [self loadDataWithType:type tableView:self.tbvs[type]];
 }
 
 @end
