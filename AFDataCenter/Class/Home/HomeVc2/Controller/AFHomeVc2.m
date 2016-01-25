@@ -25,7 +25,9 @@
 
 - (NSInteger)homeTableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    NSInteger number = arc4random() % 4 + 1;
+    AFLog(@"有%ld组", (long)number);
+    return number;
 }
 
 - (UITableViewCell *)homeTableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -36,7 +38,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"测试数据%ld", (long)indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"测试123数据%ld", (long)indexPath.row];
     
     return cell;
 }

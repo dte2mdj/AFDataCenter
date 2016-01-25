@@ -123,10 +123,14 @@
     tbv.mj_header = header;
 }
 
+/**
+ *  加载新数据
+ *
+ *  @param type 需要加载数据的类型
+ */
 - (void)loadNewDataWithType:(NSInteger)type
 {
-    AFLog(@"loadNewData.......");
-    
+    AFLog(@"%s", __func__);
     [self sendRequestWithType:type];
 }
 
@@ -191,5 +195,4 @@
     // 请求获取数据
     [self loadDataWithType:type tableView:self.tbvs[type]];
 }
-
 @end
